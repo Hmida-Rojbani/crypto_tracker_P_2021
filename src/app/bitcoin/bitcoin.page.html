@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color = 'primary'>
+    <ion-title>Bitcoin Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed *ngIf="bitcoin$">
+    <ion-row>
+      <ion-col>
+        <div class="ion-text-center">
+          <ion-img style="height: 160px;" [src]="bitcoin$.image"></ion-img>
+        </div>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        <div class="ion-text-center">
+          <ion-card  [ngStyle]="{'background-color':bitcoin$.price_change_percentage_24h > 0 ? '#90EE90' : '#FFC8E6' }">
+            <ion-card-header>
+              <ion-card-title>Bitcoin Info</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <h2>Current Price : {{bitcoin$.current_price}}</h2>
+              <div *ngIf="bitcoin$.price_change_percentage_24h>0">
+                <h3>The price is Up by {{bitcoin$.price_change_percentage_24h|number}}% in the last 24 Hours.</h3>
+              </div>
+              <div *ngIf="bitcoin$.price_change_percentage_24h <= 0">
+                <h3>The price is Down by {{bitcoin$.price_change_percentage_24h|number}}% in the last 24 Hours.</h3>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

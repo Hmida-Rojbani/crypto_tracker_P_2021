@@ -22,7 +22,7 @@
               <ion-card-title>Bitcoin Info</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <h2>Current Price : {{bitcoin$.current_price}}</h2>
+              <h2>Current Price : {{bitcoin$.current_price}} {{selectedFiat}}</h2>
               <div *ngIf="bitcoin$.price_change_percentage_24h>0">
                 <h3>The price is Up by {{bitcoin$.price_change_percentage_24h|number}}% in the last 24 Hours.</h3>
               </div>
@@ -37,3 +37,12 @@
   </ion-grid>
 
 </ion-content>
+
+<ion-footer>
+  <ion-item>
+    <ion-label>Select Fiat</ion-label>
+      <ion-select [(ngModel)]="selectedFiat" (ionChange)="changeFiat()">
+        <ion-select-option *ngFor="let fiat of fiats" value="{{fiat}}">{{fiat}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+</ion-footer>
